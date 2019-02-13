@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ap-e=-d4@!6#jdlpaw-a6jzfpdc=#t)0=crswll&(#l8zvxwjz'
+SECRET_KEY = os.environ.get('SECRET_KEY', '9876543210')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
