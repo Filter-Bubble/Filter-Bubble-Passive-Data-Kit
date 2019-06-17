@@ -1,0 +1,21 @@
+# Added PATH so that Cron can find docker and docker-compose
+# Added full path to docker-compose.yml
+# Make sure to use exec and not run to avoid duplicating containers
+# Added -T flag to avoid TTY error in mail
+# Installed mail application on server
+# Ran chmod on backuppostgres.sh so that it could be executed
+
+MAILTO=jedsfilterbubble@gmail.com
+SHELL=/bin/bash
+LANG=en_US.UTF-8
+PYTHONIOENCODING=utf8
+PATH=/usr/bin:/usr/local/bin
+
+23 1 * * *    [[ $(docker ps -f "name=pdk-postgres" --format '{{.Names}}') == pdk-postgres ]] && /home/jeds/filter-bubble-docker/backuppostgres.sh
+*/10 * * * *    [[ $(docker ps -f "name=pdk-django" --format '{{.Names}}') == pdk-django ]] && docker-compose -f /home/jeds/filter-bubble-docker/docker-compose.yml exec -T django python manage.py pdk_delete_redundant_readings
+*/15 * * * *    [[ $(docker ps -f "name=pdk-django" --format '{{.Names}}') == pdk-django ]] && docker-compose -f /home/jeds/filter-bubble-docker/docker-compose.yml exec -T django python manage.py compare_web_usage
+*/5 * * * *    [[ $(docker ps -f "name=pdk-django" --format '{{.Names}}') == pdk-django ]] && docker-compose -f /home/jeds/filter-bubble-docker/docker-compose.yml exec -T django python manage.py pdk_update_server_health
+* * * * *    [[ $(docker ps -f "name=pdk-django" --format '{{.Names}}') == pdk-django ]] && docker-compose -f /home/jeds/filter-bubble-docker/docker-compose.yml exec -T django python manage.py pdk_process_bundles -v 0
+* * * * *    [[ $(docker ps -f "name=pdk-django" --format '{{.Names}}') == pdk-django ]] && docker-compose -f /home/jeds/filter-bubble-docker/docker-compose.yml exec -T django python manage.py pdk_compile_reports
+* * * * *    [[ $(docker ps -f "name=pdk-django" --format '{{.Names}}') == pdk-django ]] && docker-compose -f /home/jeds/filter-bubble-docker/docker-compose.yml exec -T django python manage.py pdk_update_performance_metadata
+*/5 * * * *    [[ $(docker ps -f "name=pdk-django" --format '{{.Names}}') == pdk-django ]] && docker-compose -f /home/jeds/filter-bubble-docker/docker-compose.yml exec -T django python manage.py pdk_compile_visualizations

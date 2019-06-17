@@ -1,0 +1,3 @@
+[submodule "Web-Historian-Server"]
+	path = Web-Historian-Server
+	url = https://github.com/audaciouscode/Web-Historian-Server.git
