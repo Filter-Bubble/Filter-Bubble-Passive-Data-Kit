@@ -1,12 +1,12 @@
 # Filter Bubble Docker
 
-This repository contains _Docker_ files which setup the _Passive Data Kit_ server. See the [Passive Data Kit documentation](https://passivedatakit.org/getting-started/django-server) for additional information.
+This repository contains _Docker_ files which setup the _Passive Data Kit_ server.
 
 ## Background
 
 Online and mobile news consumption leaves digital traces that are used to personalize news supply, possibly creating filter bubbles where people are exposed to a low diversity of issues and perspectives that match their preferences. The [JEDS Filter Bubble](http://ccs.amsterdam/projects/jeds/) project aims to understand the filter bubble effect by performing deep semantic analyses on mobile news consumption traces. This project is a collaboration between the [VU](https://www.vu.nl/nl/index.aspx), the [UvA](http://www.uva.nl/) and [NLeSC](https://www.esciencecenter.nl/), lead by [Wouter van Atteveldt](http://vanatteveldt.com/).
 
-Part of this project makes use of the [Passive Data Kit](https://passivedatakit.org/) server, developed by [Chris Karr](https://audacious-software.com/). This server gathers browsing history from each participant in a database. The _Docker_ files contained in this repository help setup the server as a _Python Django_ app.
+Part of this project makes use of the [Passive Data Kit](https://passivedatakit.org/) server, developed by [Chris Karr](https://audacious-software.com/). This server gathers browsing history from each participant in a database. The _Docker_ files contained in this repository help setup the server as a _Python Django_ app. See the [Passive Data Kit documentation](https://passivedatakit.org/getting-started/django-server) for additional information.
 
 ## Installation
 
